@@ -1,0 +1,42 @@
+var express = require('express');
+var bookRouter = express.Router();
+var router = function (nav) {
+
+	var books = [{
+		title: 'title',
+		author: 'Author'
+}, {
+		title: 'title2',
+		author: 'Author2'
+}]
+
+	bookRouter.route('/')
+		.get(function (req, res) {
+			res.render('booklistview', {
+				title: 'BOOKS',
+				nav: [{
+					Link: '/Books',
+					Text: 'Books'
+		}, {
+					Link: '/Authors',
+					Text: 'Authors'
+		}],
+				books: books
+			});
+		});
+
+
+
+	bookRouter.route('/')
+		.get(function (req, res) {
+			res.render('bookview', {
+				title: 'BOOK',
+				books: {
+					title: 'title',
+					author: 'Author'
+				}
+			});
+		});
+	return bookRouter;
+}
+module.exports = bookRouter;

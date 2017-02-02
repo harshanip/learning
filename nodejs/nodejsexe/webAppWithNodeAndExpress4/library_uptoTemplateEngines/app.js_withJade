@@ -1,0 +1,24 @@
+var  express = require('express');
+var  app = express();
+
+var port = process.env.PORT || 5000;
+
+app.use(express.static('public'));
+//tell express where we store views, set a variable calles views to ./src/views NOTE: ./ is important , if omit won't work
+app.set('views', './src/views');
+//Set viewEngine
+app.set('view engine', 'jade');
+
+app.get('/', function (req, res) {
+    res.render('index',{list: ['a','b']});
+});
+
+app.get('/books', function (req, res) {
+    res.send('Hello Books');
+});
+
+app.listen(port, function (err) {
+    console.log('running server on port ' + port);
+});
+
+ 
